@@ -1,0 +1,41 @@
+.container {
+    height: 100%;
+    overflow: hidden;
+    ul{
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        overflow-y: auto;
+        max-height: 300px;
+        &::-webkit-scrollbar{
+            display: none;
+            &-thumb{
+                background-color: rgba(255,255,255,0.6);
+            }
+        }
+        .body_playlist{
+            display: flex;
+            gap: 1.5rem;
+            height: 100%;
+            width: 100%;
+            img{
+                max-inline-size: 20%;
+                border-radius: 10rem;
+            }
+            li{
+                display: flex;
+                gap: 1rem;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+                align-items: center;
+                justify-content: center;
+                &:hover{
+                    color: aqua;
+                }
+            }
+        }
+        
+    }
+}

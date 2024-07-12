@@ -1,0 +1,35 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1db954;
+    gap: 5rem;
+    
+    .logo {
+        display: flex;
+        .img{
+            height: 300px;
+        }
+        .slogan {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .button {
+        background-color: black;
+        padding: 1rem 5rem;
+        border-radius: 5rem;
+        font-size: 18px;
+        color: #e0e0e0;
+        &:hover {
+            background-color: #e0e0e0;
+            color: black;
+            cursor: pointer;
+        }
+    }
+
+}
