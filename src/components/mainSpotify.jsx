@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState,useRef } from 'react'
 import styled from './StyledSpotify.module.scss'
 import clsx from 'clsx'
 import SidebarSpotify from './SidebarSpotify'
@@ -11,6 +11,14 @@ import { reducerCases } from '../utils/Contants';
 
 export default function MainSpotify() {
   const [{token}, dispatch] = useStateProvider();
+  const bodyRef = useRef();
+  const [navBackground,setNavBackground] = useState(false);
+  const [headerBackground,setHeaderBackground] = useState(false);
+  const bodyScrolled = () =>{
+    bodyRef.current.scrollTop >= 30 ? setNavBackground(true) : setNavBackground(false)
+    bodyRef.current.scrollTop >= 20 ? setHeaderBackground(true) : setHeaderBackground(false)
+  }
+  
   useEffect(() => {
     const getDataUser = async () => {
       if (token) {
@@ -27,8 +35,6 @@ export default function MainSpotify() {
           }
 
           const data = await response.json();
-          console.log(data);
-
           const userInfor = {
             userId : data.id,
             userName : data.display_name,
@@ -46,10 +52,10 @@ export default function MainSpotify() {
     <div className={clsx(styled.container)}>
       <div className={clsx(styled.spotify__body)}>
         <SidebarSpotify />
-        <div className={clsx(styled.body)}>
-          <NavbarSpotify />
+        <div className={clsx(styled.body)} ref={bodyRef} onScroll={bodyScrolled}>
+            <NavbarSpotify navBackground={navBackground}/>
           <div className={clsx(styled.body__contents)}>
-            <BodySpotify />
+            <BodySpotify headerBackground ={headerBackground}/>
           </div>
         </div>
       </div>

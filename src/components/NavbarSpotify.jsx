@@ -6,10 +6,15 @@ import { CgProfile } from 'react-icons/cg'
 import {useStateProvider} from '../utils/StateProvider'
 
 
-export default function NavbarSpotify() {
+export default function NavbarSpotify({navBackground}) {
+  console.log(navBackground)
   const [{ userInfor }, dispatch] = useStateProvider();
   return (
-    <div className= {clsx(style.container)}>
+    <div
+      className={clsx(style.container, {
+        [style.navBackground]: navBackground,
+      })}
+    >
       <div className={clsx(style.searchBar)}>
         <FaSearch />
         <input type="text" placeholder="What do u want to play??" />
