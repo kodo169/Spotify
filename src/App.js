@@ -1,5 +1,5 @@
 import './App.css';
-import MainSpotify from './components/mainSpotify';
+import MainSpotify from './components/MainSpotify.jsx';
 import Login from './components/mainLogin'
 import { useEffect } from 'react';
 import { useStateProvider } from './utils/StateProvider';
