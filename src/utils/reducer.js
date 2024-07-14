@@ -3,6 +3,7 @@ import { reducerCases } from "./Contants.js";
 export const initialState = {
     token : null,
     playlist : [],
+    userInfor : null,
 };
 
 
@@ -19,9 +20,10 @@ const reducer = (state, action) => {
                 playlist: action.playlist,
             };
         }
-        case reducerCases.REMOVE_TOKEN:
+        case reducerCases.SET_USER:
             return {
-                 ...state, token: null 
+                ...state, 
+                userInfor: action.userInfor, 
             }; 
         default:
             return state;

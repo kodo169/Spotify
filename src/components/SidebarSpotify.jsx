@@ -14,15 +14,15 @@ export default function SidebarSpotify() {
         </div>
         <ul>
           <li>
-            <IoLibrary/>
+            <MdHomeFilled/>
             <span>Home</span>
           </li>
           <li>
-            <MdHomeFilled/>
+            <MdSearch />
             <span>Search</span>
           </li>
           <li>
-            <MdSearch />
+            <IoLibrary/>
             <span>Your Library</span>
           </li>
         </ul>
