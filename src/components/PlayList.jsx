@@ -7,7 +7,11 @@ import clsx from 'clsx';
 
 export default function PlayList() {
     const [{ token,playlist }, dispatch] = useStateProvider();
-
+    const handeClick = (selectionPlaylistID) => {
+      console.log(selectionPlaylistID)
+      dispatch({type: reducerCases.SET_SELECTION_PLAYLIST_ID,selectionPlaylistID})
+      console.log('ID sau khi click'+ selectionPlaylistID)
+    }
     useEffect(() => {
       const getPlayListData = async () => {
         if (token) {
@@ -45,7 +49,7 @@ export default function PlayList() {
         {
           playlist.map(({name, id,imageUrl}) =>{
             return (
-              <div  key={id} className={clsx(styled.body_playlist)}>
+              <div onClick={()=> handeClick(id)}  key={id} className={clsx(styled.body_playlist)}>
                 {imageUrl && <img src={imageUrl} alt={name} />} 
                 <li>{name}</li>
               </div>
