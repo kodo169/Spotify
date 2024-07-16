@@ -15,6 +15,7 @@ export default function MainSpotify() {
   const [navBackground,setNavBackground] = useState(false);
   const [headerBackground,setHeaderBackground] = useState(false);
   const bodyScrolled = () =>{
+    console.log("chạy")
     bodyRef.current.scrollTop >= 30 ? setNavBackground(true) : setNavBackground(false)
     bodyRef.current.scrollTop >= 20 ? setHeaderBackground(true) : setHeaderBackground(false)
   }

@@ -26,7 +26,7 @@ const reducer = (state, action) => {
                 ...state, 
                 userInfor: action.userInfor, 
             };
-        case reducerCases.selectionPlaylistID :
+        case reducerCases.SET_SELECTION_PLAYLIST_ID :
             return {
                 ...state,
                 selectionPlaylistID : action.selectionPlaylistID,

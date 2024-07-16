@@ -10,7 +10,7 @@ import { CgProfile } from 'react-icons/cg'
 export default function BodySpotify({headerBackground}) {
   const [{token,selectionPlaylistID , selectPlaylist}, dispatch] = useStateProvider();
   useEffect(() => {
-    console.log('Đây là selcet Playlist :'+selectionPlaylistID)
+    console.log('Đây là selcet Playlist :'+ selectionPlaylistID)
     const getInitPlayList = async () => {
       if (token) {
 
@@ -45,7 +45,7 @@ export default function BodySpotify({headerBackground}) {
               track_number : track.track.track_number
             })),
           }
-
+          console.log(selectPlaylist);
           dispatch({type: reducerCases.SELECT_PLAYLIST,selectPlaylist});          
         }catch(error){
           console.error('Error fetching playlist data:', error.response || error.message);
@@ -59,7 +59,6 @@ export default function BodySpotify({headerBackground}) {
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10? '0' : ''}${seconds}`;
   }
-
   return (
     <>
       <div className= {clsx(styled.container, {
