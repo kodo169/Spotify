@@ -24,13 +24,14 @@ export default function PlayList() {
                 'Authorization': `Bearer ${token}`
               }
             });
-            
             if (!response.ok) {
               throw new Error('Network response was not ok ' + response.statusText);
             }
 
             const data = await response.json();
+            
             const item = data.items;
+
             const playlist = item.map(({name , id,images}) => {
               return {name,id,imageUrl: images[0].url};
             });
@@ -43,6 +44,7 @@ export default function PlayList() {
       };
       getPlayListData();
     },[token, dispatch])
+
   return (
     <div className={clsx(styled.container)}>
       <ul>

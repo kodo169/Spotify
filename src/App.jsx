@@ -1,10 +1,10 @@
 import './App.css';
 import MainSpotify from './components/MainSpotify.jsx';
-import Login from './components/mainLogin'
+import Login from './components/mainLogin.jsx'
 import { useEffect } from 'react';
-import { useStateProvider } from './utils/StateProvider';
-import {reducerCases }from './utils/Contants';
-
+import { useStateProvider } from './utils/StateProvider.jsx';
+import {reducerCases }from './utils/Contants.js';
+import React from 'react';
 function App() {
 
   const [{ token }, dispatch] = useStateProvider();

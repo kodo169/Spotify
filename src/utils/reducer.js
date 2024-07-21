@@ -6,6 +6,8 @@ export const initialState = {
     userInfor : null,
     selectionPlaylistID : "5vu60Ii5kZjRZ5hIxqwaIv",
     selectPlaylist : null,
+    currentPlaying: null,
+    playerState : false,
 };
 
 
@@ -35,6 +37,17 @@ const reducer = (state, action) => {
             return{
                 ...state,
                 selectPlaylist : action.selectPlaylist,
+            }
+        case reducerCases.SET_CURRENT_SONG:
+            return{
+                ...state,
+                currentPlaying : action.currentPlaying,
+            }
+
+        case reducerCases.SET_PLAYER_STATE:
+            return {
+                ...state,
+                playerState: action.playerState,
             }
         default:
             return state;
