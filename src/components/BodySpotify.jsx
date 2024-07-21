@@ -5,12 +5,13 @@ import { FaPlay  } from 'react-icons/fa'
 import {useStateProvider} from '../utils/StateProvider'
 import { reducerCases } from '../utils/Contants'
 import { CgProfile } from 'react-icons/cg'
+import axios from 'axios'
+import { response } from 'express'
 
 
 export default function BodySpotify({headerBackground}) {
   const [{token,selectionPlaylistID , selectPlaylist}, dispatch] = useStateProvider();
   useEffect(() => {
-    console.log('Đây là selcet Playlist :'+ selectionPlaylistID)
     const getInitPlayList = async () => {
       if (token) {
 
@@ -27,7 +28,6 @@ export default function BodySpotify({headerBackground}) {
           }
 
           const data = await response.json();
-          console.log(data);
           const selectPlaylist = {
             id: data.id,
             name: data.name,
@@ -45,7 +45,6 @@ export default function BodySpotify({headerBackground}) {
               track_number : track.track.track_number
             })),
           }
-          console.log(selectPlaylist);
           dispatch({type: reducerCases.SELECT_PLAYLIST,selectPlaylist});          
         }catch(error){
           console.error('Error fetching playlist data:', error.response || error.message);
@@ -54,11 +53,40 @@ export default function BodySpotify({headerBackground}) {
     }
     getInitPlayList();
   },[token,selectionPlaylistID, dispatch]);
+
   const msToMinutesAndSecons = (ms) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10? '0' : ''}${seconds}`;
   }
+
+  const playTrack = async (id,name,artists,image,context_uri,track_number) => {
+    const urlGet = `https://api.spotify.com/v1/me/player/play`;
+    await axios.put(urlGet, 
+      {
+        context_uri,
+        offset :{
+          position: track_number - 1,
+        },
+        position_ms: 0
+      }, 
+      {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    // if(response.statusCode === 204){
+    //   const currentPlaying ={
+    //     id,name,artists,image,
+    //   }
+    //   dispatch({type: reducerCases.SET_CURRENT_SONG, currentPlaying});
+    //   dispatch({type: reducerCases.SET_PLAYER_STATE, playerState : true});
+    // }
+    // else{
+    //   dispatch({type: reducerCases.SET_PLAYER_STATE, playerState : true});
+    // }
+  }
+
   return (
     <>
       <div className= {clsx(styled.container, {
@@ -106,7 +134,7 @@ export default function BodySpotify({headerBackground}) {
           {
             selectPlaylist && selectPlaylist.tracks.map(({id,name,artists,image,duration,album,context_uri,track_number},index) => {
                 return (
-                  <div key={id} className={clsx(styled.row)}>
+                  <div key={id} className={clsx(styled.row)} onClick={() => playTrack(id,name,artists,image,context_uri,track_number)}>
                     <div className={clsx(styled.col)}>
                       <span>{index+1}</span>
                     </div>
@@ -116,7 +144,7 @@ export default function BodySpotify({headerBackground}) {
                       </div>
                       <div className={clsx(styled.infor)}>
                         <p className={clsx(styled.name)}>{name}</p>
-                        <p className={clsx(styled.artists)}>{artists}</p>
+                        <p className={clsx(styled.artists)}>{artists.join(", ")}</p>
                       </div>
                     </div>
                     <div className={clsx(styled.col)}>

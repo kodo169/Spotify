@@ -7,7 +7,6 @@ import {useStateProvider} from '../utils/StateProvider'
 
 
 export default function NavbarSpotify({navBackground}) {
-  console.log(navBackground)
   const [{ userInfor }, dispatch] = useStateProvider();
   return (
     <div

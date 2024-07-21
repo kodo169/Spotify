@@ -15,7 +15,6 @@ export default function MainSpotify() {
   const [navBackground,setNavBackground] = useState(false);
   const [headerBackground,setHeaderBackground] = useState(false);
   const bodyScrolled = () =>{
-    console.log("chạy")
     bodyRef.current.scrollTop >= 30 ? setNavBackground(true) : setNavBackground(false)
     bodyRef.current.scrollTop >= 20 ? setHeaderBackground(true) : setHeaderBackground(false)
   }
@@ -30,7 +29,6 @@ export default function MainSpotify() {
               Authorization: `Bearer ${token}`
             },
           })
-
           if(!response.ok){
             throw new Error('Network response was not ok ' + response.statusText);
           }
@@ -40,6 +38,7 @@ export default function MainSpotify() {
             userId : data.id,
             userName : data.display_name,
           }
+
           dispatch({type : reducerCases.SET_USER,userInfor})
         } catch (error) {
           console.error('Error fetching playlist data:', error.response || error.message);

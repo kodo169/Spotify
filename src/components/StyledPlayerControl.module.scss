@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    svg{
+        color: #b3b3b3;
+        transition: 0.2 ease-in-out;
+        &:hover{
+            color: white;
+        }
+    }
+    .state{
+        font-size: 2.5rem;
+        svg{
+            color: white;
+        }
+    }
+    .next,.TrackPrev{
+        font-size: 2rem;
+    }
+    .repeat,.shuffle{
+        font-size: 1.5rem;
+    
+    }
+}
