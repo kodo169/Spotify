@@ -6,7 +6,6 @@ import {useStateProvider} from '../utils/StateProvider'
 import { reducerCases } from '../utils/Contants'
 import { CgProfile } from 'react-icons/cg'
 import axios from 'axios'
-import { response } from 'express'
 
 
 export default function BodySpotify({headerBackground}) {
@@ -75,16 +74,6 @@ export default function BodySpotify({headerBackground}) {
         Authorization: `Bearer ${token}`,
       }
     });
-    // if(response.statusCode === 204){
-    //   const currentPlaying ={
-    //     id,name,artists,image,
-    //   }
-    //   dispatch({type: reducerCases.SET_CURRENT_SONG, currentPlaying});
-    //   dispatch({type: reducerCases.SET_PLAYER_STATE, playerState : true});
-    // }
-    // else{
-    //   dispatch({type: reducerCases.SET_PLAYER_STATE, playerState : true});
-    // }
   }
 
   return (
