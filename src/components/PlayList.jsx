@@ -8,9 +8,7 @@ import clsx from 'clsx';
 export default function PlayList() {
     const [{ token,playlist }, dispatch] = useStateProvider();
     const handeClick = (selectionPlaylistID) => {
-      console.log(selectionPlaylistID)
       dispatch({type: reducerCases.SET_SELECTION_PLAYLIST_ID,selectionPlaylistID})
-      console.log('ID sau khi click'+ selectionPlaylistID)
     }
     useEffect(() => {
       const getPlayListData = async () => {

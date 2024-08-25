@@ -1,0 +1,10 @@
+
+.container{
+    margin: 2rem 2rem;
+    gap: 2rem;
+    .modalOverlay{
+        background-color: red;
+        height: 300px;
+        width: 100%;
+    }
+}
